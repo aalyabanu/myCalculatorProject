@@ -1,38 +1,80 @@
-.App {
-  text-align: center;
+
+.result input{
+  height: 100px;
+  background-color: aliceblue;
+width:inherit;
+  padding-left: 20px;
+  text-align: right;
+  padding-right: 20px;
+  border-style: double;
+  font-size:40px;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn-primary.digitKey {
+  color: black;
+  background-color: white;
+  border-color: grey;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.btn-primary:hover {
+  color: #fff;
+  background-color: #00b3db;
+  border-color: #285e8e; /*set the color you want here*/
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.btn-primary.equalKey {
+  background-color: green;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-primary.operatorKey {
+  background-color: white;
+  color: green;
+  font-weight: 100;
+  font-size: 17px;
+}
+.btn-primary.operatorKey:hover {
+  color: #fff;
+  background-color: green;
+  border-color: white; /*set the color you want here*/
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-primary.functionKey {
+  background-color: white;
+  color: green;
+  font-weight: 200;
+  font-size: 20px;
+}
+
+.btn-primary.functionKey:hover {
+  color: #fff;
+  background-color: green;
+  border-color: white; /*set the color you want here*/
+}
+
+.btn-primary.functionKeyRed {
+  background-color: white;
+  color: firebrick;
+  font-weight: 600;
+  font-size: 20px;
+}
+.btn-primary.functionKeyRed:hover,
+.btn-primary.functionKeyRed:focus,
+btn-primary.functionKeyRed:active {
+  background-color: firebrick;
+  color: white;
+  border-color: white;
+}
+
+
+.button {
+  display: block;
+  width: 100%;
+}
+
+Button {
+  width: 25%;
+  height: 60px;
+  /* margin-top: 10px; */
 }
