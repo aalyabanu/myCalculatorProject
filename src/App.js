@@ -9,6 +9,7 @@ import plusIcon from "@iconify/icons-fa-solid/plus";
 import minusIcon from "@iconify/icons-fa-solid/minus";
 import divideIcon from "@iconify/icons-fa-solid/divide";
 import percentageIcon from "@iconify/icons-fa-solid/percentage";
+import slashIcon from "@iconify/icons-bi/slash";
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class App extends React.Component {
     this.state = {
       answer: "",
       operation: "",
+      runningTotal: 0,
     };
   }
 
@@ -32,9 +34,10 @@ class App extends React.Component {
     // alert("num is pressed");
     this.setState((state) => {
       if (state.operation === "=") {
-        return { operation: "", answer: value };
+        return { operation: "", answer: value }; //if user presses number then equal to then just return whatever button was pressed
       }
       let answer = state.answer + value;
+      console.log("answer is", answer);
       if (answer === ".") {
         return { answer: "0." };
       } else {
@@ -66,6 +69,7 @@ class App extends React.Component {
       this.setState({
         operation: currentOperation,
       });
+      console.log("current operation is", currentOperation);
     } else {
       this.setState((state) => {
         return {
@@ -79,6 +83,33 @@ class App extends React.Component {
         };
       });
     }
+  }
+
+  reset() {
+    this.setState({
+      answer: "",
+      operation: "",
+      runningTotal: 0,
+    });
+  }
+
+  backspace() {
+    this.setState({
+      answer: this.state.answer.slice(0, -1),
+    });
+  }
+
+  plusMinus() {
+    this.setState({
+      answer: parseFloat(this.state.answer) * -1,
+    });
+  }
+
+  percent() {
+    this.setState({
+      answer: parseFloat(this.state.answer) * 0.01,
+      //  operation: "X",
+    });
   }
 
   equals() {
@@ -121,13 +152,14 @@ class App extends React.Component {
   render() {
     return (
       <Container>
-        <Row>
-          <Col className="result">
-            <input type="text" value={this.state.answer} readOnly />
-            <div class="operation">{this.state.operation}</div>
-          </Col>
+        <Row className="result">
+          <input type="text" value={this.state.answer} readOnly />
         </Row>
-        <Row className="keypadFirstRow">
+        {/* <Row className="operation">
+          Operator:
+          {this.state.operation}
+        </Row> */}
+        <Row className="keypadRow">
           <Button
             name="C"
             className="functionKeyRed"
@@ -140,7 +172,8 @@ class App extends React.Component {
             className="operatorKey"
             onClick={(e) => this.checkEntry(e.target.name)}
           >
-            +/-
+            <Icon icon={plusIcon} />
+            <Icon icon={slashIcon} /> <Icon icon={minusIcon} />
           </Button>
           <Button
             name="%"
@@ -158,7 +191,7 @@ class App extends React.Component {
           </Button>
         </Row>
 
-        <Row className="keypadSecondRow">
+        <Row className="keypadRow">
           <Button
             name="1"
             className="digitKey"
@@ -189,7 +222,7 @@ class App extends React.Component {
           </Button>
         </Row>
 
-        <Row className="keypadThirdRow">
+        <Row className="keypadRow">
           <Button
             name="4"
             className="digitKey"
@@ -220,7 +253,7 @@ class App extends React.Component {
           </Button>
         </Row>
 
-        <Row className="keypadFourthRow">
+        <Row className="keypadRow">
           <Button
             name="7"
             className="digitKey"
@@ -251,7 +284,7 @@ class App extends React.Component {
           </Button>
         </Row>
 
-        <Row className="keypadFifthRow">
+        <Row className="keypadRow">
           <Button
             name="."
             className="digitKey"
